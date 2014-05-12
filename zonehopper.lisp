@@ -85,3 +85,19 @@
 ; Bus stops 1000 units around Coffman Union
 #+NIL (transit-within 600583817 1000.0 "bus_stop")
 ; Bus stops 1000 units around Patina on Selby & Snelling
+#+NIL (transit-within 622228607 1000.0 "bus_stop")
+; Bus stops 1000 units around Snelling & University
+
+(defun routes-within (origin_id distance type)
+  "Find routes of 'type' type within 'distance' distance
+ of the origin osm id"
+  (let* ((avail-stops (transit-stops-within origin_id distance type)))
+    (remove-duplicates
+     (flatten
+      (map 'list
+	   (lambda (x)
+	     (strings->list
+	      (get-metcouncil-routes
+	       (strvector->alist
+		(cdr (assoc :tags x))))))
+	   avail-stops)))))
