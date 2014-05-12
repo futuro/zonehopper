@@ -31,6 +31,14 @@
     (dolist (tag alist result)
       (push (cdr tag) result))))
 
+(defun get-routes (alist tag-key)
+  "A general way to get the list of routes from the tags of a mass transit stop node"
+  (cdr (tags-assoc alist tag-key)))
+
+(defun get-metcouncil-routes (alist)
+  "Get the routes of a TC metrotransit route."
+  (get-routes alist "metcouncil:routes"))
+
 ;; 'distance' could be meters, or it could be whatever unit the geography
 ;; is in. Currently I don't care.
 (pomo:defprepared-with-names transit-stops-within (origin_id distance type)
