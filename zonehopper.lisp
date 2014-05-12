@@ -25,6 +25,9 @@
 			       (cddr slist)))))
     (alistify '() strlist)))
 
+(defun strvector->alist (strvec)
+  "Convert a vector of strings to an alist"
+  (strlist->alist (map 'list (lambda (x) x) strvec)))
 
 (defun tags-assoc (alist tag)
   "Find the string tag"
