@@ -8,15 +8,6 @@
     (setq plist (gensym))
     (strlist->plist plist strlist)))
 
-;; (labels ((plistify (plist slist)
-;; 	   "Take a string list slist' and input all the items
-;;  into the plist 'sym'"
-;; 	   (if (not slist) plist
-;; 	       (progn
-;; 		 ((setf (get plist (car slist)) (cadr slist))
-;; 		  (plistify plist (cddr slist)))))))
-;;   (plistify (defvar sym (gensym)) strlist))
-
 (defun strlist->plist (plist strlist)
 "Convert 'strlist' into 'plist' as a plist"
   (if (not strlist)
