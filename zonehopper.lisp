@@ -57,6 +57,12 @@
 	((atom structure) (list structure))
 	(t (mapcan #'flatten structure))))
 
+(defun compare-routes (tags1 tags2)
+  "Compare the two routes to see if they overlap"
+  (let ((routes1 (strings->list (get-metcouncil-routes tags1)))
+	(routes2 (strings->list (get-metcouncil-routes tags2))))
+    (intersection routes1 routes2)))
+
 ;; 'distance' could be meters, or it could be whatever unit the geography
 ;; is in. Currently I don't care.
 (pomo:defprepared-with-names transit-stops-within (origin_id distance type)
