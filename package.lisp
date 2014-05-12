@@ -2,5 +2,8 @@
 
 (defpackage #:zonehopper
   (:use #:cl
-	#:postmodern))
+	#:postmodern)
+  (:export
+   #:strlist->alist
+   #:tags-assoc))
 
