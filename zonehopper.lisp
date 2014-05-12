@@ -2,20 +2,6 @@
 
 (in-package #:zonehopper)
 
-(defun newstrlist->plist (strlist)
-  "Create a new plist and convert a list of strings into it"
-  (progn
-    (setq plist (gensym))
-    (strlist->plist plist strlist)))
-
-(defun strlist->plist (plist strlist)
-"Convert 'strlist' into 'plist' as a plist"
-  (if (not strlist)
-      plist
-      (progn
-	(setf (get plist (car strlist)) (cadr strlist))
-	(strlist->plist plist (cddr strlist)))))
-
 (defun strlist->alist (strlist)
   "Convert 'strlist' into an alist"
   (labels ((alistify (alist slist)
