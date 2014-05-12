@@ -33,7 +33,7 @@
 
 ;; 'distance' could be meters, or it could be whatever unit the geography
 ;; is in. Currently I don't care.
-(pomo:defprepared-with-names transit-within (origin_id distance type)
+(pomo:defprepared-with-names transit-stops-within (origin_id distance type)
 	((:with
 	  (:as 'origin
 	       (:select '*
