@@ -39,6 +39,24 @@
   "Get the routes of a TC metrotransit route."
   (get-routes alist "metcouncil:routes"))
 
+; This is probably not the best way to do this
+(defun strings->list (strings)
+  "Convert a space delimited string list of integers (e.g. \"3 4\")
+ of routes to a proper list"
+  (if strings
+   (with-input-from-string
+       (schar strings)
+     (loop
+	for x = (read schar nil :end)
+	until (eq x :end)
+	collect x))))
+
+;; Code borrowed from Rosetta Code section for flattening lists
+(defun flatten (structure)
+  (cond ((null structure) nil)
+	((atom structure) (list structure))
+	(t (mapcan #'flatten structure))))
+
 ;; 'distance' could be meters, or it could be whatever unit the geography
 ;; is in. Currently I don't care.
 (pomo:defprepared-with-names transit-stops-within (origin_id distance type)
