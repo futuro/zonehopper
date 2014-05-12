@@ -16,12 +16,15 @@
 	(setf (get plist (car strlist)) (cadr strlist))
 	(strlist->plist plist (cddr strlist)))))
 
-(defun strlist->alist (alist strlist)
-"Convert 'strlist' into 'alist' as a alist"
-  (if (not strlist)
-      alist
-      (strlist->alist (cons (cons (car strlist) (cadr strlist)) alist)
-		      (cddr strlist))))
+(defun strlist->alist (strlist)
+  "Convert 'strlist' into an alist"
+  (labels ((alistify (alist slist)
+	   (if (not slist)
+	       alist
+	       (alistify (cons (cons (car slist) (cadr slist)) alist)
+			       (cddr slist)))))
+    (alistify '() strlist)))
+
 
 (defun tags-assoc (alist tag)
   "Find the string tag"
