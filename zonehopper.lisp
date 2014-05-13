@@ -63,6 +63,14 @@
 	(routes2 (strings->list (get-metcouncil-routes tags2))))
     (intersection routes1 routes2)))
 
+;; This wasn't defined, so I defined it. I should probably pull this
+;; out into a util file
+(in-package :s-sql)
+(s-sql::def-sql-op :cast (query type)
+  `("CAST(" ,@(s-sql::sql-expand query)
+	    " AS " ,@(s-sql::sql-expand type) ")"))
+(in-package :zonehopper)
+
 ;; 'distance' could be meters, or it could be whatever unit the geography
 ;; is in. Currently I don't care.
 (pomo:defprepared-with-names transit-stops-within (origin_id distance type)
