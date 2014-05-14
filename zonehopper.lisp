@@ -52,6 +52,7 @@
 	collect x))))
 
 ;; Code borrowed from Rosetta Code section for flattening lists
+;; Licensed there under the GNU Free Documentation License 1.2
 (defun flatten (structure)
   (cond ((null structure) nil)
 	((atom structure) (list structure))
